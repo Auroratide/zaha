@@ -40,4 +40,20 @@ describe('zaha' , () => {
     expect(obj.key).to.equal('Exact Key');
     expect(obj.prop).to.equal('Another value');
   });
+
+  it('should be extensible', () => {
+    const BaseBuilder = zaha(schema);
+    class Builder extends BaseBuilder {
+      withJoy() {
+        this.schema.key = () => 'Joy!';
+        return this;
+      }
+    }
+
+    const obj = new Builder()
+      .withJoy()
+      .build();
+
+    expect(obj.key).to.equal('Joy!');
+  });
 });
