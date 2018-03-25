@@ -45,7 +45,7 @@ describe('zaha' , () => {
     const BaseBuilder = zaha(schema);
     class Builder extends BaseBuilder {
       withJoy() {
-        this.schema.key = () => 'Joy!';
+        this.schema.key = is('Joy!');
         return this;
       }
     }
