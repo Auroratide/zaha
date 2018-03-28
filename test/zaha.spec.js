@@ -89,6 +89,58 @@ describe('zaha' , () => {
     });
   });
 
+  describe('arrays', () => {
+    it('should allow an array of basic types', () => {
+      const Builder = zaha({
+        a: is.arrayOf(is.string())
+      });
+
+      const obj = new Builder().build();
+
+      expect(obj.a).to.exist;
+      expect(obj.a).to.be.a('array');
+      expect(obj.a[0]).to.be.a('string');
+    });
+
+    it('should allow an array of objects', () => {
+      const Builder = zaha({
+        a: is.arrayOf(is.object({ b: is.string() }))
+      });
+
+      const obj = new Builder().build();
+
+      expect(obj.a).to.exist;
+      expect(obj.a).to.be.a('array');
+      expect(obj.a[0]).to.be.a('object');
+    });
+
+    it('should allow an array of builders', () => {
+      const BuilderA = zaha({ a: is.string() });
+      const BuilderB = zaha({
+        b: is.arrayOf(new BuilderA())
+      });
+
+      const obj = new BuilderB().build();
+
+      expect(obj.b).to.exist;
+      expect(obj.b).to.be.a('array');
+      expect(obj.b[0].a).to.be.a('string');
+    });
+
+    it('should allow an array of arrays', () => {
+      const Builder = zaha({
+        a: is.arrayOf(is.arrayOf(is.number()))
+      });
+
+      const obj = new Builder().build();
+
+      expect(obj.a).to.exist;
+      expect(obj.a).to.be.a('array');
+      expect(obj.a[0]).to.be.a('array');
+      expect(obj.a[0][0]).to.be.a('number');
+    });
+  });
+
   describe('with', () => {
     it('should use the exact provided value', () => {
       const Builder = zaha({
