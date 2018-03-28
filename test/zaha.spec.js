@@ -59,6 +59,34 @@ describe('zaha' , () => {
       expect(obj.b.a).to.exist;
       expect(obj.b.a).to.be.a('string');
     });
+
+    it('should allow nested objects in the schema', () => {
+      const Builder = zaha({
+        a: is.object({
+          b: is.string()
+        })
+      });
+
+      const obj = new Builder().build();
+
+      expect(obj.a.b).to.exist;
+      expect(obj.a.b).to.be.a('string');
+    });
+
+    it('should allow doubly nested objects in the schema', () => {
+      const Builder = zaha({
+        a: is.object({
+          b: is.object({
+            c: is.number()
+          })
+        })
+      });
+
+      const obj = new Builder().build();
+
+      expect(obj.a.b.c).to.exist;
+      expect(obj.a.b.c).to.be.a('number');
+    });
   });
 
   describe('with', () => {
