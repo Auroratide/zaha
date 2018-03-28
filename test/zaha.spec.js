@@ -8,7 +8,7 @@ describe('zaha' , () => {
 
   beforeEach(() => {
     schema = {
-      key: is.string
+      key: is.string()
     };
   });
 
@@ -55,5 +55,32 @@ describe('zaha' , () => {
       .build();
 
     expect(obj.key).to.equal('Joy!');
+  });
+
+  it('should accept other builders in the schema', () => {
+    const BuilderA = zaha(schema);
+    const BuilderB = zaha({
+      key: new BuilderA()
+    });
+
+    const obj = new BuilderB().build();
+
+    expect(obj.key.key).to.exist;
+    expect(obj.key.key).to.be.a('string');
+  });
+
+  it('should allow nested builders to be overridden', () => {
+    const BuilderA = zaha(schema);
+    const BuilderB = zaha({
+      key: new BuilderA()
+    });
+
+    const obj = new BuilderB()
+      .withKey(new BuilderA()
+        .withKey('a string')
+        .build())
+      .build();
+
+    expect(obj.key.key).to.equal('a string');
   });
 });
