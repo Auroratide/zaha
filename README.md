@@ -153,3 +153,41 @@ export default class RoomBuilder extends Base {
   }
 }
 ```
+
+## Example
+
+Here is a full use-case example.  Chai is being used here, but any testing framework works with **Zaha**.
+
+```js
+// room-builder.js
+import zaha, { is } from 'zaha';
+
+export default zaha({
+  length: is.number(),
+  width: is.number(),
+  furniture: is.arrayOf(is.string())
+});
+```
+
+```js
+import { expect } from 'chai';
+import RoomBuilder from './room-builder';
+import { moveAllFurniture } from './room-utils';
+
+describe('Furniture Mover', () => {
+  it('moves all furniture from one room into the other', () => {
+    const furniture = ['chair', 'table'];
+    const formerRoom = new RoomBuilder()
+      .withFurniture(furniture)
+      .build();
+    const newRoom = new RoomBuilder()
+      .withFurniture([])
+      .build();
+
+    moveAllFurniture.from(formerRoom).to(newRoom);
+
+    expect(formerRoom.furniture).to.be.empty;
+    expect(newRoom.furniture).to.deep.equal(furniture);
+  });
+});
+```
