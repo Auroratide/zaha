@@ -141,6 +141,18 @@ describe('zaha' , () => {
     });
   });
 
+  describe('functions', () => {
+    it('should be a function', () => {
+      const Builder = zaha({
+        f: is.function()
+      });
+
+      const obj = new Builder().build();
+
+      expect(obj.f).to.not.throw();
+    });
+  });
+
   describe('with', () => {
     it('should use the exact provided value', () => {
       const Builder = zaha({
