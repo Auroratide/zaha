@@ -153,6 +153,20 @@ describe('zaha' , () => {
     });
   });
 
+  describe('oneOf', () => {
+    it('should be one of the provided values in the array', () => {
+      const values = ['value 1', 'value 2'];
+
+      const Builder = zaha({
+        n: is.oneOf(values)
+      });
+
+      const obj = new Builder().build();
+
+      expect(values.includes(obj.n)).to.be.true;
+    });
+  });
+
   describe('with', () => {
     it('should use the exact provided value', () => {
       const Builder = zaha({
