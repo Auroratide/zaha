@@ -69,6 +69,7 @@ You might notice that this mystical `is` object can be used to define the types 
 * `is.object(schema)`: Converts the schema into a basic builder; useful for nested structures
 * `is.arrayOf(builder)`: Defines an array of the provided builder type
 * `is.function()`: A callable function
+* `is.oneOf(values)`: Value must be exactly one of the provided values; values is an array
 
 The following example shows how to use `is.object` and `is.arrayOf`:
 
