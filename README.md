@@ -67,6 +67,7 @@ You might notice that this mystical `is` object can be used to define the types 
 * `is.int()`: An integer number
 * `is.boolean()`: A boolean value
 * `is.object(schema)`: Converts the schema into a basic builder; useful for nested structures
+* `is.array()`: Defines an array of any type
 * `is.arrayOf(builder)`: Defines an array of the provided builder type
 * `is.function()`: A callable function
 * `is.oneOf(values)`: Value must be exactly one of the provided values; values is an array

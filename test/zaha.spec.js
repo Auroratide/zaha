@@ -101,6 +101,17 @@ describe('zaha' , () => {
   });
 
   describe('arrays', () => {
+    it('should allow any array', () => {
+      const Builder = zaha({
+        a: is.array()
+      });
+
+      const obj = new Builder().build();
+
+      expect(obj.a).to.exist;
+      expect(obj.a).to.be.a('array');
+    });
+
     it('should allow an array of basic types', () => {
       const Builder = zaha({
         a: is.arrayOf(is.string())
