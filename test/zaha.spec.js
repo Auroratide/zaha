@@ -87,6 +87,17 @@ describe('zaha' , () => {
       expect(obj.a.b.c).to.exist;
       expect(obj.a.b.c).to.be.a('number');
     });
+
+    it('should build objects with no specific schema', () => {
+      const Builder = zaha({
+        a: is.object()
+      });
+
+      const obj = new Builder().build();
+
+      expect(obj.a).to.exist;
+      expect(obj.a).to.be.a('object');
+    });
   });
 
   describe('arrays', () => {
