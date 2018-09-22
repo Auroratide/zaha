@@ -63,6 +63,7 @@ You might notice that this mystical `is` object can be used to define the types 
 
 * `is(value)`: An exact value the field should be when the final object is built
 * `is.string()`: A string field
+* `is.datestring()`: A string which represents a date
 * `is.number()`: A decimal number
 * `is.int()`: An integer number
 * `is.boolean()`: A boolean value

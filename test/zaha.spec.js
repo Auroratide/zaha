@@ -12,6 +12,7 @@ describe('zaha' , () => {
       const Builder = zaha({
         value: is('some value'),
         string: is.string(),
+        datestring: is.datestring(),
         number: is.number(),
         int: is.int(),
         boolean: is.boolean()
@@ -28,6 +29,12 @@ describe('zaha' , () => {
     it('should be a string', () => {
       expect(obj.string).to.exist;
       expect(obj.string).to.be.a('string');
+    });
+
+    it('should be a date string', () => {
+      expect(obj.datestring).to.exist;
+      expect(obj.datestring).to.be.a('string');
+      expect(new Date(obj.datestring).toString()).to.not.equal('Invalid Date');
     });
 
     it('should be a number', () => {
