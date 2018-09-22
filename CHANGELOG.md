@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.4 (22 Sep 2018)
+
+* Added `is.datestring()` to allow for string fields that should represent dates
+
 ## 0.1.3 (04 Jul 2018)
 
 * Allow `is.object()` to take no arguments in the case of generic objects
