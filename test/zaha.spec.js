@@ -259,4 +259,16 @@ describe('zaha' , () => {
     expect(obj.key).to.equal('Joy!');
   });
 
+  it('should create independent builders', () => {
+    const Builder = zaha({
+      name: is.string()
+    });
+
+    const bobBuilder = new Builder().withName('Bob');
+    const janeBuilder = new Builder().withName('Jane');
+
+    expect(bobBuilder.build().name).to.equal('Bob');
+    expect(janeBuilder.build().name).to.equal('Jane');
+  });
+
 });

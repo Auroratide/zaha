@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.5 (20 Nov 2018)
+
+* Fixed **CRITICAL BUG**: Constructing multiple builders actually shared the same schema object
+
 ## 0.1.4 (22 Sep 2018)
 
 * Added `is.datestring()` to allow for string fields that should represent dates
